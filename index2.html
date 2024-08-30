@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Calculator</title>
+    <style>
+        /* 전체 페이지 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* 계산기 컨테이너 스타일 */
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* 입력 필드 스타일 */
+        input[type="text"] {
+            width: 220px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            text-align: right;
+        }
+
+        /* 버튼 스타일 */
+        .button {
+            padding: 15px;
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* 버튼 호버 스타일 */
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        /* 결과 필드 스타일 */
+        #result {
+            width: 220px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            text-align: right;
+            background-color: #f4f4f4;
+        }
+
+        /* 넓은 버튼 스타일 */
+        .wide-button {
+            width: 140px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>공학용 계산기</h2>
+        숫자: <input type="text" id="number" value=""><br>
+        <input type="button" value="+" onClick="add()" class="button">
+        <input type="button" value="-" onclick="subtract()" class="button">
+        <input type="button" value="*" onclick="multiply()" class="button">
+        <input type="button" value="/" onclick="divide()" class="button"><br>
+
+        <input type="button" value="√" onclick="sqrt()" class="button">
+        <input type="button" value="x²" onclick="square()" class="button">
+        <input type="button" value="log" onclick="logarithm()" class="button">
+        <input type="button" value="ln" onclick="naturalLog()" class="button"><br>
+
+        <input type="button" value="sin" onclick="sine()" class="button">
+        <input type="button" value="cos" onclick="cosine()" class="button">
+        <input type="button" value="tan" onclick="tangent()" class="button"><br>
+
+        <input type="button" value="Clear" onclick="clearResult()" class="wide-button"><br>
+        연산결과: <input type="text" id="result" value="">
+    </div>
+
+    <script>
+        // 덧셈 
+        function add() {
+            let num1 = parseFloat(document.getElementById('result').value);
+            let num2 = parseFloat(document.getElementById('number').value);
+            document.getElementById('result').value = num1 + num2;
+        }
+
+        // 뺄셈 
+        function subtract() {
+            let num1 = parseFloat(document.getElementById('result').value);
+            let num2 = parseFloat(document.getElementById('number').value);
+            document.getElementById('result').value = num1 - num2;
+        }
+
+        // 곱셈 
+        function multiply() {
+            let num1 = parseFloat(document.getElementById('result').value);
+            let num2 = parseFloat(document.getElementById('number').value);
+            document.getElementById('result').value = num1 * num2;
+        }
+
+        // 나눗셈 
+        function divide() {
+            let num1 = parseFloat(document.getElementById('result').value);
+            let num2 = parseFloat(document.getElementById('number').value);
+            if (num2 !== 0) {
+                document.getElementById('result').value = num1 / num2;
+            } else {
+                document.getElementById('result').value = 'Error';
+            }
+        }
+
+        // 루트
+        function sqrt() {
+            let num = parseFloat(document.getElementById('number').value);
+            document.getElementById('result').value = Math.sqrt(num);
+        }
+
+        // 제곱 
+        function square() {
+            let num = parseFloat(document.getElementById('number').value);
+            document.getElementById('result').value = Math.pow(num, 2);
+        }
+
+        // 로그 
+        function logarithm() {
+            let num = parseFloat(document.getElementById('number').value);
+            document.getElementById('result').value = Math.log10(num);
+        }
+
+        // 자연로그 
+        function naturalLog() {
+            let num = parseFloat(document.getElementById('number').value);
+            document.getElementById('result').value = Math.log(num);
+        }
+
+        // sin 함수
+        function sine() {
+            let num = parseFloat(document.getElementById('number').value);
+            document.getElementById('result').value = Math.sin(num * Math.PI / 180);
+        }
+
+        // cos 함수
+        function cosine() {
+            let num = parseFloat(document.getElementById('number').value);
+            document.getElementById('result').value = Math.cos(num * Math.PI / 180);
+        }
+
+        // tan 함수
+        function tangent() {
+            let num = parseFloat(document.getElementById('number').value);
+            document.getElementById('result').value = Math.tan(num * Math.PI / 180);
+        }
+
+        // 초기화
+        function clearResult() {
+            document.getElementById('number').value = '';
+            document.getElementById('result').value = '';
+        }
+    </script>
+</body>
+</html>
